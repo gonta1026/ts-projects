@@ -2,10 +2,10 @@ import React from 'react';
 import './App.css';
 import Users from "./pages/Users";
 
-function App() {
+const App = () => {
   return (
     <div>
-      <Users />
+      <Users hoge={"hoge"} num={10} />
     </div>
   );
 }

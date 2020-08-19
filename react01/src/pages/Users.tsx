@@ -3,7 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { fetchUsers } from '../api/user';
 import { User } from '../models/user';
 
-const Users: React.FC = () => {
+type Props = {
+  hoge: string;
+  num: number;
+}
+
+const Users: React.FC<Props> = (Props) => {
+  const { hoge, num } = Props;
   const [userList, setUserList] = useState<User[] | undefined>(undefined);
 
   const fetchUsersReq = async () => {
@@ -17,8 +23,7 @@ const Users: React.FC = () => {
 
   useEffect(() => {
     const data = fetchUsersReq();
-    data.then((users: User[] | undefined) => {
-      console.log(users)
+    data.then((users) => {
       setUserList(users);
     });
   }, []);
@@ -27,7 +32,7 @@ const Users: React.FC = () => {
     <>
       <h1>User List</h1>
       {
-        userList && userList.map((user) => {
+        userList && userList.map((user: User) => {
           return (
             <p key={user.id}>{`${user.userId} ${user.title} ${user.body}`}</p>
           );
