@@ -37,5 +37,4 @@ class Developer implements Human {
   }
 }
 
-
 const user: Human = new Developer("keisei", 38, 3);
