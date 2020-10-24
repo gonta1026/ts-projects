@@ -1,4 +1,9 @@
-class Person {
+abstract class Person {
+  static species = "Homo sapiens";
+  static isAdult(age: number) {
+    if (age > 17) return true;
+    return false;
+  }
   readonly id: number = 33;
   constructor(readonly name: string, protected age: number) {
     this.id = 1;
@@ -7,12 +12,18 @@ class Person {
   incrementAge() : number{
     return this.age += 1;
   }
-  greeting() : string{
-    return `${this.name}さんこんにちわ！`;
+  greeting(this: Person) : void{
+    console.log(`${this.name}さんこんにちわ！`);
+    this.explainJob();
   }
+  abstract explainJob(): void;
 }
 
 class Teacher extends Person {
+  private static instance: Teacher;
+  explainJob(): void {
+    console.log(`${this.subject}が好き`)
+  }
   get subject() {
     if (!this._subject) {
       throw new Error("subjectがないよ");
@@ -23,22 +34,23 @@ class Teacher extends Person {
   set subject(value: string) {
     this._subject = value;
   }
-  constructor(name: string, age: number, private _subject: string) {
+  /* シングルトンパターンで実装する際はインスタンスを一回しか呼び出さないようにする */
+  private constructor(name: string, age: number, private _subject: string) {
     super(name, age);
   }
-  greeting(): string {
-    return `${this.name}さんこんにちわ！ 僕の好きな科目は${this._subject}です`;
-  }
-  
+
   sayAge() : string {
     return `年は${this.age}です`
   }
+  
+  static getInstance() {
+    if (Teacher.instance) return Teacher.instance;
+    Teacher.instance = new Teacher("keisei", 40, "english");
+    return Teacher.instance;
+  }
 }
 
-const keisei = new Teacher("keisei", 40, "english");
-
-console.log(keisei.greeting());
-console.log(keisei.sayAge());
-console.log(keisei.subject);
-keisei.subject = "Music";
-console.log(keisei.subject);
+const teacher01 = Teacher.getInstance();
+const teacher02 = Teacher.getInstance();
+console.log(teacher01);
+console.log(teacher02);
