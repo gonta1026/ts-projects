@@ -8,11 +8,11 @@ abstract class Person {
   constructor(readonly name: string, protected age: number) {
     this.id = 1;
   }
-  
-  incrementAge() : number{
+
+  incrementAge(): number {
     return this.age += 1;
   }
-  greeting(this: Person) : void{
+  greeting(this: Person): void {
     console.log(`${this.name}さんこんにちわ！`);
     this.explainJob();
   }
@@ -30,7 +30,7 @@ class Teacher extends Person {
     }
     return this._subject;
   }
-  
+
   set subject(value: string) {
     this._subject = value;
   }
@@ -39,10 +39,10 @@ class Teacher extends Person {
     super(name, age);
   }
 
-  sayAge() : string {
+  sayAge(): string {
     return `年は${this.age}です`
   }
-  
+
   static getInstance() {
     if (Teacher.instance) return Teacher.instance;
     Teacher.instance = new Teacher("keisei", 40, "english");

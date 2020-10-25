@@ -13,10 +13,10 @@ type EngineerBlogger = Engineer & Blogger
 const quill: EngineerBlogger = {
   name: "quill",
   role: "keke",
-  follower: 100, 
+  follower: 100,
 }
 
-type NumberBoolean = number | boolean; 
+type NumberBoolean = number | boolean;
 type StringNumber = string | number;
 type Mix = NumberBoolean & StringNumber;// Mixはnumberになる。わざわざ混ぜることはないと思うけど。
 
