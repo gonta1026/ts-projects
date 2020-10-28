@@ -1,8 +1,6 @@
-import * as Interfaces from "./interfaces.js";
 //Interfaces.foodのようにして使う。 
-import { Scoreable } from "./interfaces.js";
-import { Foods } from "./foods.js";
-
+import { Scoreable } from "./interfaces";
+import { Foods } from "./foods";
 export class Score implements Scoreable {
   private static instance: Score;
   private constructor() { }
