@@ -1,0 +1,5 @@
+- tsc -wをでコンパイルをした後にnodemonを使ってnode.jsのファイルの変更を検知する。
+- expressを使う。
+- npm i @types/node
+- node.jsのmoduleを理解しよう。
+- 
